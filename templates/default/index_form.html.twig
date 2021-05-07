@@ -1,4 +1,42 @@
 {% extends 'layout/default.html.twig' %}
 {% block content %}
     {{ form(form) }}
+
+    <script type="text/javascript">
+        $( document ).ready( function () {
+            $( "#index-form" ).validate( {
+                rules: {
+                    "index_form[name]": "required",
+                    "index_form[surname]": "required",
+                    "index_form[age]": {
+                        required: true,
+                        integer: true,
+                        range: [18, 99]
+                    },
+                    "index_form[email]": {
+                        required: true,
+                        email: true
+                    },
+                    "index_form[agree]": "required"
+                },
+                errorElement: "em",
+                errorPlacement: function ( error, element ) {
+                    // Add the `help-block` class to the error element
+                    error.addClass( "invalid-feedback" );
+
+                    if ( element.prop( "type" ) === "checkbox" ) {
+                        error.insertAfter( element.parent().find('label') );
+                    } else {
+                        error.insertAfter( element );
+                    }
+                },
+                highlight: function ( element, errorClass, validClass ) {
+                    $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+                }
+            } );
+        } );
+    </script>
 {% endblock %}

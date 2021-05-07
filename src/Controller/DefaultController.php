@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
     public function indexForm(): Response
     {
         $model = new IndexForm();
-        $form = $this->createForm(IndexFormType::class, $model)
+        $form = $this->createForm(IndexFormType::class, $model, ['attr' => ['id' => 'index-form']])
             ->add('submit', SubmitType::class);
 
         return $this->render('default/index_form.html.twig', ['form' => $form->createView()]);
