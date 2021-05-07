@@ -4,6 +4,7 @@
 namespace App\Form;
 
 
+use App\Validator\EmailDomain;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -23,7 +24,7 @@ class IndexFormType extends AbstractType
         $builder->add('name', TextType::class, ['required' => true, 'constraints' => [new NotBlank()]])
             ->add('surname', TextType::class, ['required' => true, 'constraints' => [new NotBlank()]])
             ->add('age', NumberType::class, ['required' => true, 'constraints' => [new NotBlank(), new Range(['min' => 18, 'max' => 99])]])
-            ->add('email', EmailType::class, ['required' => true, 'constraints' => [new NotBlank()]])
+            ->add('email', EmailType::class, ['required' => true, 'constraints' => [new NotBlank(), new EmailDomain()]])
             ->add('agree', CheckboxType::class, ['required' => true]);
     }
 }

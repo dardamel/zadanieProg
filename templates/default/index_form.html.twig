@@ -1,5 +1,10 @@
 {% extends 'layout/default.html.twig' %}
 {% block content %}
+    {% if success %}
+        <div class="alert alert-success" role="alert">
+            {{ 'Data has been saved.'|trans }}
+        </div>
+    {% endif %}
     {{ form(form) }}
 
     <script type="text/javascript">
@@ -21,7 +26,6 @@
                 },
                 errorElement: "em",
                 errorPlacement: function ( error, element ) {
-                    // Add the `help-block` class to the error element
                     error.addClass( "invalid-feedback" );
 
                     if ( element.prop( "type" ) === "checkbox" ) {
