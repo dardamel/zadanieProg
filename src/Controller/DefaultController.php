@@ -14,22 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends AbstractController
 {
-    public function indexForm(): Response
-    {
-        $model = new IndexForm();
-        $form = $this->getIndexFormType($model);
-
-        return $this->render('default/index_form.html.twig', ['form' => $form->createView()]);
-    }
-
-    public function indexFormSave(Request $request): Response
+    public function indexForm(Request $request): Response
     {
         $model = new IndexForm();
         $form = $this->getIndexFormType($model);
 
         $form->handleRequest($request);
-
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $model = new IndexForm();
             $form = $this->getIndexFormType($model);
 
@@ -41,11 +32,8 @@ class DefaultController extends AbstractController
 
     private function getIndexFormType(IndexForm $indexForm): Form
     {
-        $form = $this->createForm(IndexFormType::class, $indexForm, [
+        return $this->createForm(IndexFormType::class, $indexForm, [
             'attr' => ['id' => 'index-form'],
-            'action' => $this->generateUrl('index_form_save'),
         ])->add('submit', SubmitType::class);
-
-        return $form;
     }
 }

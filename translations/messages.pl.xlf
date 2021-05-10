@@ -30,6 +30,10 @@
                 <source>Data has been saved.</source>
                 <target>Zapisano dane</target>
             </trans-unit>
+            <trans-unit id="Project title.">
+                <source>Project title.</source>
+                <target>Projekt zadanie.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,9 +1,3 @@
 index:
     path: /
     controller: App\Controller\DefaultController::indexForm
-
-index_form_save:
-    path: /form_save
-    controller: App\Controller\DefaultController::indexFormSave
-    methods: PUT|POST
-

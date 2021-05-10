@@ -1,6 +1,6 @@
 {% extends 'layout/default.html.twig' %}
 {% block content %}
-    {% if success %}
+    {% if success is defined %}
         <div class="alert alert-success" role="alert">
             {{ 'Data has been saved.'|trans }}
         </div>

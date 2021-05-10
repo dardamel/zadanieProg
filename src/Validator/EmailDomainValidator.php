@@ -25,7 +25,7 @@ class EmailDomainValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $result = file_get_contents($this->urlCheck . $value);
+        $result = @file_get_contents($this->urlCheck . $value);
         $resultData = json_decode($result, true);
 
         if (is_array($resultData) && !empty($resultData['disposable']) && $resultData['disposable'] == 'false') {
